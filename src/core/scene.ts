@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { createShelf } from '../objects/shelf';
 import { createPrinter } from '../objects/printer';
 import { forkliftGroup } from '../objects/forklift';
+import { forklift_model } from '../objects/3dforklift';
 
 export const canvas = document.querySelector('#webgl') as HTMLCanvasElement;
 export const scene = new THREE.Scene();
@@ -16,6 +17,7 @@ const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(100, 100),
     new THREE.MeshStandardMaterial({ color: 0xbababa })
 );
+export const forklift3d = forklift_model
 
 shelf.position.set(-5, 0, 0); 
 printer.position.set(5, 0, 0); 
@@ -27,5 +29,6 @@ scene.add(shelf);
 scene.add(printer);
 scene.add(light);
 scene.add(ground);
+scene.add(forklift3d);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
