@@ -1,5 +1,5 @@
 import './core/scene';
-import { camera, printer, scene, shelf } from './core/scene';
+import { camera, printer, shelf } from './core/scene';
 import { forkliftGroup } from './objects/forklift';
 import { animate } from './core/animate';
 
