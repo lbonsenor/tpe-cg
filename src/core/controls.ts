@@ -8,7 +8,7 @@ export const keys: Record<string, boolean> = {
 };
 
 export function setupInput(cameraController: CameraController) {
-    // State for mouse drag
+    // ────────────────────────Mouse Drag ────────────────────────
     let isDragging = false;
     let prevX = 0;
     let prevY = 0;
@@ -16,16 +16,16 @@ export function setupInput(cameraController: CameraController) {
     window.addEventListener("keydown", (e) => {
         const key = e.key.toLowerCase();
 
-        // Movement keys
+        // ──────────────────────── Movement ────────────────────────
         if (keys.hasOwnProperty(key)) {
             keys[key] = true;
         }
 
-        // Camera zoom keys
+        // ──────────────────────── Camera Zoom ────────────────────────
         if (key === "o") cameraController.zoom(1);
         if (key === "p") cameraController.zoom(-1);
 
-        // Camera mode switch
+        // ──────────────────────── Camera mode ────────────────────────
         const mode = parseInt(key);
         if (mode >= 1 && mode <= 6) {
             cameraController.switchMode(mode as 1 | 2 | 3 | 4 | 5 | 6);
@@ -39,7 +39,7 @@ export function setupInput(cameraController: CameraController) {
         }
     });
 
-    // Mouse drag for orbital camera
+    // ──────────────────────── Orbital Camera ────────────────────────
     window.addEventListener("mousedown", (e) => {
         isDragging = true;
         prevX = e.clientX;
@@ -62,7 +62,7 @@ export function setupInput(cameraController: CameraController) {
         prevY = e.clientY;
     });
 
-    // Mouse wheel zoom
+    // ──────────────────────── Mouse Wheel Zoom ────────────────────────
     window.addEventListener("wheel", (e) => {
         if (![1, 2, 3].includes(cameraController.mode)) return;
         cameraController.zoom(e.deltaY * 0.01);

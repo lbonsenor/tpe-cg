@@ -13,7 +13,7 @@ export function animate(cameraController: CameraController) {
 
     const delta = clock.getDelta();
 
-    // ─── Movement ─────────────────────────────────────────────
+    // ──────────────────────── Movement ────────────────────────
     const dir = new THREE.Vector3(0, 0, -1).applyEuler(forkliftGroup.rotation);
 
     if (keys.a) forkliftGroup.rotation.y += rotateSpeed * delta;
@@ -22,10 +22,10 @@ export function animate(cameraController: CameraController) {
     if (keys.s) forkliftGroup.position.addScaledVector(dir, -moveSpeed * delta);
 
 
-    // ─── Camera ────────────────────────────────────────────────
-    cameraController.update(forkliftGroup); // Camera logic is now fully delegated
+    // ──────────────────────── Camera ────────────────────────
+    cameraController.update(forkliftGroup);
 
-    // ─── HUD Update ─────────────────────────────────────────────
+    // ──────────────────────── HUD Update ────────────────────────
     const actions: string[] = [];
     if (keys.w) actions[0] = 'Moving Forward';
     if (keys.s) actions[0] = 'Moving Backward';
@@ -38,6 +38,6 @@ export function animate(cameraController: CameraController) {
         actions,
     });
 
-    // ─── Render ─────────────────────────────────────────────────
+    // ──────────────────────── Render ────────────────────────
     renderer.render(scene, cameraController.camera);
 }

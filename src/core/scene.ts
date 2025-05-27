@@ -17,8 +17,8 @@ const ground = new THREE.Mesh(
     new THREE.MeshStandardMaterial({ color: 0xbababa })
 );
 
-shelf.position.set(-5, 0, 0); // Position it to the side
-printer.position.set(5, 0, 0); // Opposite side
+shelf.position.set(-5, 0, 0); 
+printer.position.set(5, 0, 0); 
 light.position.set(5, 10, 7.5);
 ground.rotation.x = -Math.PI / 2;
 
