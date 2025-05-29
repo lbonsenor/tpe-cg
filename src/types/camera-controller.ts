@@ -79,7 +79,7 @@ export class CameraController {
 
     private updateDriverCamera(elevator: THREE.Object3D) {
         // Position slightly inside elevator looking forward
-        const forward = new THREE.Vector3(0, 0, -1).applyEuler(elevator.rotation);
+        const forward = new THREE.Vector3(0, 0, 1).applyEuler(elevator.rotation);
         const pos = elevator.position.clone().add(new THREE.Vector3(0, 1.5, 0)); // approx driver eye height
         this.camera.position.copy(pos);
         this.camera.lookAt(pos.clone().add(forward));

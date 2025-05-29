@@ -1,4 +1,5 @@
 import type { CameraController } from "../types/camera-controller";
+import { forklift_model, moveElevatorDown, moveElevatorUp } from '../objects/3dforklift';
 
 export const keys: Record<string, boolean> = {
     w: false,
@@ -30,6 +31,10 @@ export function setupInput(cameraController: CameraController) {
         if (mode >= 1 && mode <= 6) {
             cameraController.switchMode(mode as 1 | 2 | 3 | 4 | 5 | 6);
         }
+
+        // ──────────────────────── Elevator ────────────────────────
+        if (key === "e") moveElevatorUp()
+        if (key === "q") moveElevatorDown()
     });
 
     window.addEventListener("keyup", (e) => {
@@ -68,3 +73,4 @@ export function setupInput(cameraController: CameraController) {
         cameraController.zoom(e.deltaY * 0.01);
     });
 }
+
