@@ -12,6 +12,39 @@
   </head>
   <body>
     <div id="hud"></div>
+    <div id="hud2">
+      <label>
+        Surface Type:
+        <select id="surfaceType">
+          <option value="Sweep">Sweep</option>
+          <option value="Revolution">Revolution</option>
+        </select>
+      </label>
+      <br />
+
+      <label id="optionLabel">
+        Sweep Options:
+        <select id="surfaceOption">
+          <option value="A1">A1</option>
+          <option value="A2">A2</option>
+          <option value="A3">A3</option>
+          <option value="A4">A4</option>
+        </select>
+      </label>
+      <br />
+
+      <label id="torsionLabel">
+        Torsion Angle: <span id="torsionValue">0°</span>
+        <input type="range" id="torsionAngle" min="0" max="360" step="1" value="0" />
+      </label>
+      <br />
+
+      <label>
+        Total Height: <span id="heightValue">0.00</span>
+        <input type="range" id="totalHeight" min="0" max="2" step="0.01" value="0" />
+      </label>
+    </div>
+
     <canvas id="webgl"></canvas>
     <script type="module" src="/src/main.ts"></script>
   </body>
