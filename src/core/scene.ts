@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createShelf } from '../objects/shelf';
+import { shelfGroup } from '../objects/shelf';
 import { createPrinter } from '../objects/printer';
 import { forklift_model } from '../objects/3dforklift';
 
@@ -9,7 +9,7 @@ export const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window
 export const renderer = new THREE.WebGLRenderer({ canvas });
 export const clock = new THREE.Clock();
 export const forklift = forklift_model;
-export const shelf = createShelf();
+export const shelf = shelfGroup;
 export const printer = createPrinter();
 const light = new THREE.DirectionalLight(0xffffff, 1);
 const ground = new THREE.Mesh(
@@ -18,10 +18,11 @@ const ground = new THREE.Mesh(
 );
 export const forklift3d = forklift_model
 
-shelf.position.set(-5, 0, 0); 
-printer.position.set(5, 0, 0); 
+shelf.position.set(0, 0, 0); 
+printer.position.set(5, 0, 5); 
 light.position.set(5, 10, 7.5);
 ground.rotation.x = -Math.PI / 2;
+forklift3d.position.set(0,0,5)
 
 scene.add(shelf);
 scene.add(printer);

@@ -1,30 +1,37 @@
 import * as THREE from 'three';
 
-export function createShelf(): THREE.Group {
-    const shelfGroup = new THREE.Group();
+export const shelfGroup = new THREE.Group();
+const material = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
 
-    const material = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
+const rows = 2
+const cols = 8
 
-    const verticalBarGeo = new THREE.BoxGeometry(0.1, 8, 0.1);
-    const horizontalPlankGeo = new THREE.BoxGeometry(2, 0.1, 0.4);
+const levelSize = 2;
+const levelHeight = 1.58425-0.35;
 
-    // Four vertical bars
-    const positions = [
-        [-1, 4, -0.2], [1, 4, -0.2],
-        [-1, 4, 0.2], [1, 4, 0.2],
-    ];
-    positions.forEach(([x, y, z]) => {
-        const bar = new THREE.Mesh(verticalBarGeo, material);
-        bar.position.set(x, y, z);
-        shelfGroup.add(bar);
-    });
+const verticalBarGeo = new THREE.BoxGeometry(0.1, levelHeight, 0.1);
+const horizontalPlankGeo = new THREE.BoxGeometry(levelSize, 0.1, levelSize);
 
-    // Planks (5 levels)
-    for (let i = 0; i < 5; i++) {
+// Four vertical bars
+const verticalBarPositions = [
+    [-levelSize / 2, levelHeight / 2, -0.2], [levelSize / 2, levelHeight / 2, -0.2],
+    [-levelSize / 2, levelHeight / 2, 0.2], [levelSize / 2, levelHeight / 2, 0.2],
+]
+
+// Planks (5 levels)
+for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+        verticalBarPositions.forEach((pos) => {
+            const verticalBar = new THREE.Mesh(verticalBarGeo, material)
+            verticalBar.position.set(pos[0] + levelSize * j, pos[1] + levelHeight * i, pos[2])
+            shelfGroup.add(verticalBar);
+        })
+
         const plank = new THREE.Mesh(horizontalPlankGeo, material);
-        plank.position.set(0, i * 2 + 0.5, 0);
+        plank.position.set(j * levelSize, i * levelHeight + 0.5, 0);
         shelfGroup.add(plank);
     }
-
-    return shelfGroup;
 }
+
+
+
