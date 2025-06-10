@@ -18,8 +18,24 @@ export function animate(cameraController: CameraController) {
 
     if (keys.a) forklift_model.rotation.y += rotateSpeed * delta;
     if (keys.d) forklift_model.rotation.y -= rotateSpeed * delta;
-    if (keys.w) forklift_model.position.addScaledVector(dir, -moveSpeed * delta);
-    if (keys.s) forklift_model.position.addScaledVector(dir, +moveSpeed * delta);
+    if (keys.w) {
+        forklift_model.position.addScaledVector(dir, -moveSpeed * delta);
+        // Rotate wheels forward
+        const backWheels = forklift_model.children[2];
+        const frontWheels = forklift_model.children[3];
+        const wheelRotation = moveSpeed * delta * 2; 
+        if (backWheels) backWheels.rotation.x += wheelRotation;
+        if (frontWheels) frontWheels.rotation.x += wheelRotation;
+    }
+    if (keys.s) {
+        forklift_model.position.addScaledVector(dir, +moveSpeed * delta);
+        // Rotate wheels backward
+        const backWheels = forklift_model.children[2];
+        const frontWheels = forklift_model.children[3];
+        const wheelRotation = -moveSpeed * delta * 2; 
+        if (backWheels) backWheels.rotation.x += wheelRotation;
+        if (frontWheels) frontWheels.rotation.x += wheelRotation;
+    }
 
 
     // ──────────────────────── Camera ────────────────────────
