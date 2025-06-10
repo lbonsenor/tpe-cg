@@ -6,6 +6,8 @@ const material = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
 const rows = 2
 const cols = 8
 
+let objects: THREE.Mesh[][]
+
 const levelSize = 2;
 const levelHeight = 1.58425-0.35;
 

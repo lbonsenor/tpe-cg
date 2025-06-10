@@ -1,4 +1,6 @@
 import { createA1 } from "../../objects/figures/a1";
+import { printer } from "../scene";
+import * as THREE from 'three';
 
 export type SurfaceState = {
     surfaceType: "Sweep" | "Revolution";
@@ -65,7 +67,18 @@ export function initializeHUD2() {
     printButtonEl.addEventListener("click", onPrint);
 }
 
+
+export let printedCube: THREE.Mesh | null = null;
+
 function onPrint(){
+    const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+    const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+    printedCube = new THREE.Mesh(geometry, material);
+    printedCube.position.set(0, 1.55+0.1, 0); // On top of tray
+    printedCube.name = "printedCube";
+
+    printer.add(printedCube);
+    
     switch (state.surfaceOption) {
         case 'A1': createA1(); break;
         case 'B1': break;

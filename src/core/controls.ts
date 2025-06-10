@@ -1,5 +1,6 @@
 import type { CameraController } from "../types/camera-controller";
 import { forklift_model, moveElevatorDown, moveElevatorUp } from '../objects/3dforklift';
+import { printedCube } from "./hud/object_modifier";
 
 export const keys: Record<string, boolean> = {
     w: false,
@@ -35,6 +36,15 @@ export function setupInput(cameraController: CameraController) {
         // ──────────────────────── Elevator ────────────────────────
         if (key === "e") moveElevatorUp()
         if (key === "q") moveElevatorDown()
+        if (key === "g" && printedCube) {
+        // Remove from current parent
+        if (printedCube.parent) {
+            printedCube.parent.remove(printedCube);
+        }
+        // Reset position relative to elevator
+        printedCube.position.set(0, 0.15, 0); // Adjust as needed for elevator
+        // elevator.add(printedCube);
+    }
     });
 
     window.addEventListener("keyup", (e) => {
