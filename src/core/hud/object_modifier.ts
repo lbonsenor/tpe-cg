@@ -1,3 +1,5 @@
+import { createA1 } from "../../objects/figures/a1";
+
 export type SurfaceState = {
     surfaceType: "Sweep" | "Revolution";
     surfaceOption: string;
@@ -17,6 +19,7 @@ export function initializeHUD2() {
     const surfaceOptionEl = document.getElementById("surfaceOption") as HTMLSelectElement;
     const torsionAngleEl = document.getElementById("torsionAngle") as HTMLInputElement;
     const totalHeightEl = document.getElementById("totalHeight") as HTMLInputElement;
+    const printButtonEl = document.getElementById("printButton") as HTMLButtonElement;
 
     const torsionValueEl = document.getElementById("torsionValue")!;
     const heightValueEl = document.getElementById("heightValue")!;
@@ -58,4 +61,21 @@ export function initializeHUD2() {
         state.totalHeight = value;
         heightValueEl.textContent = value.toFixed(2);
     });
+
+    printButtonEl.addEventListener("click", onPrint);
+}
+
+function onPrint(){
+    switch (state.surfaceOption) {
+        case 'A1': createA1(); break;
+        case 'B1': break;
+        case 'A2': break;
+        case 'B2': break;
+        case 'A3': break;
+        case 'B3': break;
+        case 'A4': break;
+        case 'B4': break;
+        default:
+            break;
+    }
 }
